@@ -1,0 +1,17 @@
+set -ex
+
+# cleanup repo
+mv tutorial/* .
+rm -rf tutorial
+
+
+
+# install/configue jupyter extensions
+jupyter contrib nbextension install --user
+jupyter nbextension enable --py widgetsnbextension
+#jupyter nbextension enable toc2/main
+jupyter nbextension enable equation-numbering/main
+
+jupyter trust *.ipynb
+
+
