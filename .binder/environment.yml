@@ -1,4 +1,4 @@
-name: example-environment
+name: python-tutorial-deutsch-environment
 channels:
   - conda-forge
 dependencies:
@@ -6,3 +6,6 @@ dependencies:
   - matplotlib
   - jupyter_contrib_nbextensions
   - scipy
+  - pip:
+    - kafe2 
+    - 'iminuit>2'
