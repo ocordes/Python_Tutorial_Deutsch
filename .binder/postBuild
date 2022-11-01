@@ -1,7 +1,7 @@
 set -ex
 
 # cleanup repo
-rm -rf ??.\ *
+rm -rf tutorial/??.\ *
 mv tutorial/* .
 rm -rf tutorial
 
