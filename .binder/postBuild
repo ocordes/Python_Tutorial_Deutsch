@@ -5,6 +5,9 @@ rm -rf tutorial/??.\ *
 mv tutorial/* .
 rm -rf tutorial
 
+# remove agent configuration and local tooling from the container image
+rm -rf AGENTS.md .freebuff
+
 
 
 # install/configue jupyter extensions
