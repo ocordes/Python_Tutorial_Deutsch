@@ -72,6 +72,21 @@ Abschnitte werden fortlaufend nummeriert (`## 1. Funktionen`, `### 1.1 Definitio
 Jeder Abschnitt beginnt mit einem Satz, der sein Ziel nennt, und endet mit einem
 Ergebnis, das man prüfen kann.
 
+### 4.1 Sonderfall Lektion 00
+
+`Lektion 00: Wie benutze ich das Tutorial?` ist ein Orientierungsnotebook, keine
+Lehrlektion. Für diese Datei gelten folgende Abweichungen:
+
+- **Keine Lernziele** und **keine Zusammenfassung**.
+- Direkt unter dem Titel steht eine Autorenzeile im Format
+  `*Autor: Vorname Nachname*`, im Projekt also `*Autor: Oliver Cordes*`.
+- Aufbau: Titel → Autorenzeile → Lesehinweis mit Link zum Inhaltsverzeichnis →
+  die Abschnitte 1 bis 3 → Inhaltsverzeichnis.
+- Das Inhaltsverzeichnis ist der letzte Abschnitt und wird passend nummeriert
+  (derzeit `## 4. Inhaltsverzeichnis`).
+- Die Abschnitte beschreiben die Bedienung des Tutorials; Motivation, Definition,
+  Beispiel und Übung entfallen.
+
 ## 5. Formatierung (bestehende Konventionen beibehalten)
 
 - Markdown-Zellen werden durch `---`-Zeilen voneinander getrennt.
@@ -138,11 +153,12 @@ Ergebnis, das man prüfen kann.
 
 ## 9. Prüfliste vor Abgabe
 
-- [ ] Lernziele vorhanden und überprüfbar formuliert.
+- [ ] Lernziele vorhanden und überprüfbar formuliert (außer Lektion 00).
 - [ ] Sie-Form durchgehend, keine Umgangssprache, keine Floskeln.
 - [ ] Fachbegriffe bei der ersten Verwendung kursiv und erklärt.
 - [ ] Jede Codezeile ausführbar, jede Ausgabe korrekt.
 - [ ] Anker, Links und Nummerierung unverändert und funktionsfähig.
+- [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` direkt unter dem Titel.
 - [ ] Terminologie im Dokument einheitlich.
 - [ ] Abschnitte enden mit einem prüfbaren Ergebnis.
 - [ ] Keine inhaltlichen Änderungen ohne Auftrag.
