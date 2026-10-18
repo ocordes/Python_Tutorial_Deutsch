@@ -1,12 +1,17 @@
 set -ex
 
+# Versionsangabe auf den Commit setzen, aus dem das Image gebaut wird
+if [ -d .git ]; then
+    python3 tools/update_version.py || echo 'Versionszeile konnte nicht gesetzt werden'
+fi
+
 # cleanup repo
 rm -rf tutorial/??.\ *
 mv tutorial/* .
 rm -rf tutorial
 
 # remove agent configuration and local tooling from the container image
-rm -rf AGENTS.md .freebuff
+rm -rf AGENTS.md .freebuff tools
 
 
 

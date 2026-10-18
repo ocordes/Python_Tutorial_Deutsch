@@ -84,11 +84,14 @@ Lehrlektion. Für diese Datei gelten folgende Abweichungen:
 
 - **Keine Lernziele** und **keine Zusammenfassung**.
 - Direkt unter dem Titel steht eine Autorenzeile im Format
-  `*Autor: Vorname Nachname*`, im Projekt also `*Autor: Oliver Cordes*`.
+  `*Autor: Vorname Nachname*`, im Projekt also `*Autor: Oliver Cordes*`. In
+  derselben Zelle folgen die Versionsangabe und der Fußnotenverweis
+  (Format siehe Abschnitt 4.4).
 - Aufbau: Titel → Autorenzeile → Lesehinweis mit Link zum Inhaltsverzeichnis →
   die Abschnitte 1 bis 3 → Inhaltsverzeichnis.
 - Das Inhaltsverzeichnis ist der letzte Abschnitt und wird passend nummeriert
-  (derzeit `## 4. Inhaltsverzeichnis`).
+  (derzeit `## 4. Inhaltsverzeichnis`). Danach folgt als letzte Zelle die
+  Fußnote zum Einsatz von KI-Werkzeugen (Abschnitt 4.4).
 - Abschnitt 2 enthält die Legende der Zellfarben (`### 2.1 Legende der Zellfarben`):
   Gelb steht für die Lernziele, Grün für die Zusammenfassung.
 - Die Abschnitte beschreiben die Bedienung des Tutorials; Motivation, Definition,
@@ -142,6 +145,43 @@ fünf Punkte.
   Inline-Code als `<code>…</code>`, Sonderzeichen maskiert.
 - Vor der Zelle steht eine eigene Trennzelle mit `---`; dahinter folgt direkt die
   Zelle mit dem Inhaltsverzeichnis (`**Inhalt**` und den Links), ohne Trennlinie.
+
+### 4.4 Version und Fußnote
+
+Unter dem Titel steht eine Markdown-Zelle mit Autorenzeile, Versionsangabe und
+Fußnotenverweis. Die Version wird aus dem letzten Git-Commit erzeugt und als Text
+gespeichert; beim Lesen muss keine Zelle ausgeführt werden.
+
+```html
+<!-- version:start -->
+*Autor: Oliver Cordes* · *Version: `f2745f5` vom 18.10.2026*<sup><a href="#fussnote-ki">1</a></sup>
+<!-- version:end -->
+```
+
+- Die Zeile wird **nicht von Hand** gepflegt, sondern mit
+  `python3 tools/update_version.py` aus der Kurz-ID (`git log -1 --format=%h`)
+  und dem Commit-Datum (`%cs`, ausgegeben als `TT.MM.JJJJ`) erzeugt.
+- `python3 tools/update_version.py --check` prüft die Zeile ohne zu schreiben und
+  endet bei einer Abweichung mit Exit-Code 1.
+- Die Marker `<!-- version:start -->` und `<!-- version:end -->` begrenzen den
+  Bereich, den das Skript ersetzt; sie werden nicht gerendert.
+- Beim Binder-Build ruft `.binder/postBuild` das Skript vor dem Aufräumen auf.
+  Die ausgelieferte Fassung trägt damit den Commit, aus dem das Image gebaut wurde.
+- Die Angabe nennt den Commit, auf dem der Stand beruht. Wer die Lektion ändert,
+  aktualisiert die Zeile anschließend; der eigene Commit ist darin noch nicht
+  enthalten, weil eine Datei ihren eigenen Hash nicht tragen kann.
+
+Die Fußnote steht am Dokumentende, getrennt durch eine eigene `---`-Zelle:
+
+```html
+<small id="fussnote-ki"><sup>1</sup> Bei der Erstellung dieses Tutorials haben KI-Werkzeuge Texte überarbeitet und Codebeispiele erstellt. Die fachliche Prüfung der Inhalte liegt beim Autor. Die Versionsangabe nennt den Git-Commit, auf dem der Stand dieses Notebooks beruht.</small>
+```
+
+- Der Verweis `<sup><a href="#fussnote-ki">1</a></sup>` steht in der Autorenzeile.
+- Die Fußnote ist die letzte Zelle des Dokuments; das Inhaltsverzeichnis bleibt
+  der letzte Abschnitt davor.
+- Keine Code-Zelle und kein `!git`-Aufruf: Die Angaben stehen als fester Text im
+  Notebook und sind ohne Ausführen einer Zelle sichtbar.
 
 ## 5. Formatierung (bestehende Konventionen beibehalten)
 
@@ -224,7 +264,9 @@ fünf Punkte.
 - [ ] In Lektion 00: Legende der Zellfarben in Abschnitt 2.
 - [ ] Trennlinie nach jedem Abschnitt; nach der Zusammenfassung weder Linie noch
       leere Zelle.
-- [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` direkt unter dem Titel.
+- [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` mit Versionsangabe
+      direkt unter dem Titel; `python3 tools/update_version.py --check` endet mit 0.
+- [ ] In Lektion 00: Fußnote zum Einsatz von KI-Werkzeugen als letzte Zelle.
 - [ ] Terminologie im Dokument einheitlich.
 - [ ] Abschnitte enden mit einem prüfbaren Ergebnis.
 - [ ] Keine inhaltlichen Änderungen ohne Auftrag.
