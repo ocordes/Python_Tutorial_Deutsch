@@ -1,12 +1,17 @@
 name: python-tutorial-deutsch-environment
 channels:
   - conda-forge
+# Minimum-Versionen: pandas 3 (String-Typ `str`) und numpy 2 (Druckformat der
+# gespeicherten Ausgaben) sind für Lektion 12 verbindlich. Die übrigen
+# Untergrenzen sind mit numpy 2 und Python 3.11 abgestimmt.
 dependencies:
-  - numpy
-  - matplotlib
-  - pandas
-  - jupyter_contrib_nbextensions
-  - scipy
+  - python>=3.11
+  - numpy>=2.0
+  - matplotlib>=3.9
+  - pandas>=3.0
+  - jupyter_contrib_nbextensions>=0.7
+  - scipy>=1.13
+  - nbformat>=5.9
   - pip:
-    - kafe2 
-    - 'iminuit>2'
+    - kafe2>=2.11
+    - iminuit>=2.30
