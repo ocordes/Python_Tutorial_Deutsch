@@ -113,12 +113,15 @@ Punkte stehen in einer `<ul>`-Liste.
 - Inline-Code wird als `<code>…</code>` geschrieben, Sonderzeichen als `&amp;`,
   `&lt;` und `&gt;`. Markdown-Syntax wie `` `…` `` oder `*…*` wirkt im Block nicht.
 - Auf Formeln wird verzichtet; Fachbegriffe werden ausgeschrieben.
-- Der Block ist die letzte inhaltliche Zelle der Lektion; danach stehen höchstens
-  noch eine Trennzelle mit `---` und leere Zellen.
+- Vor dem Block steht eine Trennlinie, danach folgt nichts mehr: keine Trennzelle,
+  keine leere Zelle. Der Block ist die letzte Zelle der Lektion.
 
 ## 5. Formatierung (bestehende Konventionen beibehalten)
 
 - Markdown-Zellen werden durch `---`-Zeilen voneinander getrennt.
+- Nach jedem Abschnitt steht genau eine eigene Markdown-Zelle mit `---`, ebenso
+  zwischen dem letzten Abschnitt und der Zusammenfassung. Nach der Zusammenfassung
+  folgt keine Linie und keine leere Zelle.
 - Hervorhebungen sparsam und bedeutungstragend:
   `**fett**` für Merksätze und zentrale Begriffe, *kursiv* für Fachbegriffe und
   fremdsprachige Ausdrücke, `` `Code` `` für Bezeichner, Pfade und Literale.
@@ -189,6 +192,8 @@ Punkte stehen in einer `<ul>`-Liste.
 - [ ] Anker, Links und Nummerierung unverändert und funktionsfähig.
 - [ ] Zusammenfassung in einer Zelle, hellgrün hinterlegt, dunkelgrün umrandet, ohne
       Nummer und mit höchstens fünf Punkten.
+- [ ] Trennlinie nach jedem Abschnitt; nach der Zusammenfassung weder Linie noch
+      leere Zelle.
 - [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` direkt unter dem Titel.
 - [ ] Terminologie im Dokument einheitlich.
 - [ ] Abschnitte enden mit einem prüfbaren Ergebnis.
