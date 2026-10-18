@@ -59,8 +59,9 @@ Die Reihenfolge ist verbindlich, sofern der Abschnitt nicht bereits anders
 strukturiert ist:
 
 1. **Titel** als `#`-Überschrift: `# Lektion N: Thema` (ohne Punkt am Ende).
-2. **Lernziele** als Liste: „Nach dieser Lektion können Sie …“ – drei bis
-   fünf überprüfbare Ziele mit Verben („erklären“, „anwenden“, „implementieren“).
+2. **Lernziele** in einer eigenen Zelle mit hellgelbem Hintergrund und gelbem Rand:
+   „Nach dieser Lektion können Sie …“ – drei bis fünf überprüfbare Ziele mit Verben
+   („erklären“, „anwenden“, „implementieren“). Format siehe Abschnitt 4.3.
 3. **Motivation:** ein konkretes Problem, das ohne das neue Konzept nicht lösbar ist.
 4. **Definition oder Prinzip:** die Regel, das Konzept oder die Syntax.
 5. **Beispiel:** lauffähiger, minimaler Code mit erwarteter Ausgabe.
@@ -88,6 +89,8 @@ Lehrlektion. Für diese Datei gelten folgende Abweichungen:
   die Abschnitte 1 bis 3 → Inhaltsverzeichnis.
 - Das Inhaltsverzeichnis ist der letzte Abschnitt und wird passend nummeriert
   (derzeit `## 4. Inhaltsverzeichnis`).
+- Abschnitt 2 enthält die Legende der Zellfarben (`### 2.1 Legende der Zellfarben`):
+  Gelb steht für die Lernziele, Grün für die Zusammenfassung.
 - Die Abschnitte beschreiben die Bedienung des Tutorials; Motivation, Definition,
   Beispiel und Übung entfallen.
 
@@ -115,6 +118,30 @@ Punkte stehen in einer `<ul>`-Liste.
 - Auf Formeln wird verzichtet; Fachbegriffe werden ausgeschrieben.
 - Vor dem Block steht eine Trennlinie, danach folgt nichts mehr: keine Trennzelle,
   keine leere Zelle. Der Block ist die letzte Zelle der Lektion.
+
+### 4.3 Format der Lernziele
+
+Die Lernziele stehen in einer eigenen Markdown-Zelle: ein HTML-Block mit hellgelbem
+Hintergrund (`#fffde7`) und gelbem Rand (`2px solid #f9a825`), mit denselben Ecken
+und demselben Innenabstand wie die Zusammenfassung. Die Überschrift ist ein `<h2>`
+ohne Nummer; darunter stehen der Satz „Nach dieser Lektion können Sie:“ und drei bis
+fünf Punkte.
+
+```html
+<div style="background-color: #fffde7; border: 2px solid #f9a825; border-radius: 6px; padding: 12px 18px;">
+<h2 style="margin-top: 0;">Lernziele</h2>
+<p>Nach dieser Lektion können Sie:</p>
+<ul>
+ <li>Erstes Ziel mit <code>Code</code>,</li>
+ <li>Zweites Ziel.</li>
+</ul>
+</div>
+```
+
+- Für den Block gelten dieselben Regeln wie in Abschnitt 4.2: keine Leerzeilen,
+  Inline-Code als `<code>…</code>`, Sonderzeichen maskiert.
+- Vor der Zelle steht eine eigene Trennzelle mit `---`; dahinter folgt direkt die
+  Zelle mit dem Inhaltsverzeichnis (`**Inhalt**` und den Links), ohne Trennlinie.
 
 ## 5. Formatierung (bestehende Konventionen beibehalten)
 
@@ -190,8 +217,11 @@ Punkte stehen in einer `<ul>`-Liste.
 - [ ] Fachbegriffe bei der ersten Verwendung kursiv und erklärt.
 - [ ] Jede Codezeile ausführbar, jede Ausgabe korrekt.
 - [ ] Anker, Links und Nummerierung unverändert und funktionsfähig.
+- [ ] Lernziele in eigener Zelle, hellgelb hinterlegt und gelb umrandet, mit drei bis
+      fünf prüfbaren Zielen.
 - [ ] Zusammenfassung in einer Zelle, hellgrün hinterlegt, dunkelgrün umrandet, ohne
       Nummer und mit höchstens fünf Punkten.
+- [ ] In Lektion 00: Legende der Zellfarben in Abschnitt 2.
 - [ ] Trennlinie nach jedem Abschnitt; nach der Zusammenfassung weder Linie noch
       leere Zelle.
 - [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` direkt unter dem Titel.
