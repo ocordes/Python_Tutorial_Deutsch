@@ -213,6 +213,10 @@ Die Fußnote steht am Dokumentende, getrennt durch eine eigene `---`-Zelle:
 5. **Konsistenz prüfen:** Begriffe, Anker, Querverweise, Nummerierung und
    Schreibweisen (z. B. „NumPy“) im gesamten Dokument abgleichen.
 6. **Gegenlesen:** Text ohne Kontext lesen – versteht man ihn in einem Durchgang?
+7. **Prüfungen:** Neue Prüfskripte liegen als `tools/checks/check_*.py` im
+   Repository. `python3 tools/checks/check_all.py` findet sie automatisch und
+   führt sie ohne Argumente aus; Prüfskripte außerhalb dieses Verzeichnisses
+   werden nicht verwendet.
 
 ## 7. Grenzen
 
@@ -267,6 +271,8 @@ Die Fußnote steht am Dokumentende, getrennt durch eine eigene `---`-Zelle:
 - [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` mit Versionsangabe
       direkt unter dem Titel; `python3 tools/update_version.py --check` endet mit 0.
 - [ ] In Lektion 00: Fußnote zum Einsatz von KI-Werkzeugen als letzte Zelle.
+- [ ] Neue Prüfskripte liegen unter `tools/checks/check_*.py` und laufen über
+      `python3 tools/checks/check_all.py`.
 - [ ] Terminologie im Dokument einheitlich.
 - [ ] Abschnitte enden mit einem prüfbaren Ergebnis.
 - [ ] Keine inhaltlichen Änderungen ohne Auftrag.
