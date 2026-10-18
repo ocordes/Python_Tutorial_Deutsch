@@ -66,9 +66,13 @@ strukturiert ist:
 5. **Beispiel:** lauffähiger, minimaler Code mit erwarteter Ausgabe.
 6. **Übung:** eine Aufgabe mit steigendem Schwierigkeitsgrad und, falls sinnvoll,
    einer Lösung in einer separaten Zelle.
-7. **Zusammenfassung:** maximal fünf Bulletpoints, die die Kernaussagen wiederholen.
+7. **Zusammenfassung:** eine Zelle mit hellgrünem Hintergrund und dunkelgrünem Rand,
+   ohne Nummer, mit maximal fünf Bulletpoints, die die Kernaussagen wiederholen
+   (Format siehe Abschnitt 4.2).
 
 Abschnitte werden fortlaufend nummeriert (`## 1. Funktionen`, `### 1.1 Definition`).
+Einzige Ausnahme ist die Zusammenfassung: Sie steht am Ende, trägt keine Nummer und
+zählt nicht zur Abschnittsnummerierung.
 Jeder Abschnitt beginnt mit einem Satz, der sein Ziel nennt, und endet mit einem
 Ergebnis, das man prüfen kann.
 
@@ -86,6 +90,31 @@ Lehrlektion. Für diese Datei gelten folgende Abweichungen:
   (derzeit `## 4. Inhaltsverzeichnis`).
 - Die Abschnitte beschreiben die Bedienung des Tutorials; Motivation, Definition,
   Beispiel und Übung entfallen.
+
+### 4.2 Format der Zusammenfassung
+
+Die Zusammenfassung ist genau eine Markdown-Zelle und besteht aus einem HTML-Block:
+hellgrüner Hintergrund (`#e8f5e9`), dunkelgrüner Rand (`2px solid #1b5e20`),
+abgerundete Ecken und Innenabstand. Die Überschrift ist ein `<h2>` ohne Nummer, die
+Punkte stehen in einer `<ul>`-Liste.
+
+```html
+<div style="background-color: #e8f5e9; border: 2px solid #1b5e20; border-radius: 6px; padding: 12px 18px;">
+<h2 style="margin-top: 0;">Zusammenfassung</h2>
+<ul>
+ <li>Erster Merksatz mit <code>Code</code>.</li>
+ <li>Zweiter Merksatz.</li>
+</ul>
+</div>
+```
+
+- Der Block enthält **keine Leerzeilen**: Markdown beendet einen HTML-Block an der
+  ersten Leerzeile, danach stünde der Inhalt außerhalb des Rahmens.
+- Inline-Code wird als `<code>…</code>` geschrieben, Sonderzeichen als `&amp;`,
+  `&lt;` und `&gt;`. Markdown-Syntax wie `` `…` `` oder `*…*` wirkt im Block nicht.
+- Auf Formeln wird verzichtet; Fachbegriffe werden ausgeschrieben.
+- Der Block ist die letzte inhaltliche Zelle der Lektion; danach stehen höchstens
+  noch eine Trennzelle mit `---` und leere Zellen.
 
 ## 5. Formatierung (bestehende Konventionen beibehalten)
 
@@ -158,6 +187,8 @@ Lehrlektion. Für diese Datei gelten folgende Abweichungen:
 - [ ] Fachbegriffe bei der ersten Verwendung kursiv und erklärt.
 - [ ] Jede Codezeile ausführbar, jede Ausgabe korrekt.
 - [ ] Anker, Links und Nummerierung unverändert und funktionsfähig.
+- [ ] Zusammenfassung in einer Zelle, hellgrün hinterlegt, dunkelgrün umrandet, ohne
+      Nummer und mit höchstens fünf Punkten.
 - [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` direkt unter dem Titel.
 - [ ] Terminologie im Dokument einheitlich.
 - [ ] Abschnitte enden mit einem prüfbaren Ergebnis.
