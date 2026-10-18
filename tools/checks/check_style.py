@@ -56,7 +56,9 @@ def paragraphs(md):
 
 
 def heading_anchors(md):
-    return set(re.findall(r"<a id=['\"]([^'\"]+)['\"]>", md))
+    # Anker stehen im Projekt sowohl mit als auch ohne Anführungszeichen:
+    # <a id=toc></a>, <a id='toc'></a> und <a id="toc"></a>.
+    return set(re.findall(r"<a\s+id\s*=\s*['\"]?([^'\"\s>]+)", md))
 
 
 def links(md):
