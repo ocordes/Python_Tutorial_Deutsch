@@ -13,7 +13,7 @@ python3 tools/checks/check_all.py
 | `check_separators.py` | Trennlinie vor jedem Abschnitt, genau eine Zusammenfassung am Dokumentende, keine doppelten Trenner oder Leerzellen an Abschnittsgrenzen |
 | `check_numbering.py` | fortlaufende Abschnittsnummern, passende Unterabschnitte, doppelte oder unauflösbare Anker |
 | `check_style.py` | Sie-Form, Absatzlängen, Füllwörter, Ausrufezeichen, tote relative Links und das Notebook-Schema |
-| `check_version.py` | Versionszeile und Fußnote in Lektion 00; die genannte Kurz-ID muss als Commit existieren, das Datum muss dazu passen |
+| `check_version.py` | Metadatenbox (Autor, Version) und Fußnote in Lektion 00; die genannte Kurz-ID muss als Commit existieren, das Datum muss dazu passen |
 | `check_outputs.py` | führt die Python-Zellen der Lektion 12 aus, vergleicht die Ausgaben bei den getesteten Versionen und meldet Warnungen |
 
 ## Neue Prüfungen

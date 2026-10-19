@@ -79,15 +79,13 @@ Ergebnis, das man prüfen kann.
 
 ### 4.1 Sonderfall Lektion 00
 
-`Lektion 00: Wie benutze ich das Tutorial?` ist ein Orientierungsnotebook, keine
-Lehrlektion. Für diese Datei gelten folgende Abweichungen:
+Lektion 00 (`Wie benutze ich dieses Tutorial?`) ist ein Orientierungsnotebook,
+keine Lehrlektion. Für diese Datei gelten folgende Abweichungen:
 
 - **Keine Lernziele** und **keine Zusammenfassung**.
-- Direkt unter dem Titel steht eine Autorenzeile im Format
-  `*Autor: Vorname Nachname*`, im Projekt also `*Autor: Oliver Cordes*`. In
-  derselben Zelle folgen die Versionsangabe und der Fußnotenverweis
-  (Format siehe Abschnitt 4.4).
-- Aufbau: Titel → Autorenzeile → Lesehinweis mit Link zum Inhaltsverzeichnis →
+- Direkt unter dem Titel steht eine Metadatenbox mit Autor, Version und
+  Fußnotenverweis (Format siehe Abschnitt 4.4).
+- Aufbau: Titel → Metadatenbox → Lesehinweis mit Link zum Inhaltsverzeichnis →
   die Abschnitte 1 bis 3 → Inhaltsverzeichnis.
 - Das Inhaltsverzeichnis ist der letzte Abschnitt und wird passend nummeriert
   (derzeit `## 4. Inhaltsverzeichnis`). Danach folgt als letzte Zelle die
@@ -148,20 +146,24 @@ fünf Punkte.
 
 ### 4.4 Version und Fußnote
 
-Unter dem Titel steht eine Markdown-Zelle mit Autorenzeile, Versionsangabe und
-Fußnotenverweis. Die Version wird aus dem letzten Git-Commit erzeugt und als Text
-gespeichert; beim Lesen muss keine Zelle ausgeführt werden.
+Unter dem Titel steht eine Markdown-Zelle mit einer kompakten Metadatenbox:
+Autor, Versionsangabe und Fußnotenverweis. Die Version wird aus dem letzten
+Git-Commit erzeugt und als Text gespeichert; beim Lesen muss keine Zelle
+ausgeführt werden.
 
 ```html
 <!-- version:start -->
-*Autor: Oliver Cordes* · *Version: `f2745f5` vom 18.10.2026*<sup><a href="#fussnote-ki">1</a></sup>
+<div style="background-color: #eceff1; border: 1px solid #cfd8dc; border-left: 4px solid #607d8b; border-radius: 4px; padding: 8px 14px;">
+<strong>Autor:</strong> Oliver Cordes<br>
+<strong>Version:</strong> <code>abc1234</code> vom 01.01.2026<sup><a href="#fussnote-ki">1</a></sup>
+</div>
 <!-- version:end -->
 ```
 
-- Die Zeile wird **nicht von Hand** gepflegt, sondern mit
+- Die Box wird **nicht von Hand** gepflegt, sondern mit
   `python3 tools/update_version.py` aus der Kurz-ID (`git log -1 --format=%h`)
   und dem Commit-Datum (`%cs`, ausgegeben als `TT.MM.JJJJ`) erzeugt.
-- `python3 tools/update_version.py --check` prüft die Zeile ohne zu schreiben und
+- `python3 tools/update_version.py --check` prüft die Box ohne zu schreiben und
   endet bei einer Abweichung mit Exit-Code 1.
 - Die Marker `<!-- version:start -->` und `<!-- version:end -->` begrenzen den
   Bereich, den das Skript ersetzt; sie werden nicht gerendert.
@@ -177,7 +179,7 @@ Die Fußnote steht am Dokumentende, getrennt durch eine eigene `---`-Zelle:
 <small id="fussnote-ki"><sup>1</sup> Bei der Erstellung dieses Tutorials haben KI-Werkzeuge Texte überarbeitet und Codebeispiele erstellt. Die fachliche Prüfung der Inhalte liegt beim Autor. Die Versionsangabe nennt den Git-Commit, auf dem der Stand dieses Notebooks beruht.</small>
 ```
 
-- Der Verweis `<sup><a href="#fussnote-ki">1</a></sup>` steht in der Autorenzeile.
+- Der Verweis `<sup><a href="#fussnote-ki">1</a></sup>` steht in der Metadatenbox.
 - Die Fußnote ist die letzte Zelle des Dokuments; das Inhaltsverzeichnis bleibt
   der letzte Abschnitt davor.
 - Keine Code-Zelle und kein `!git`-Aufruf: Die Angaben stehen als fester Text im
@@ -268,7 +270,7 @@ Die Fußnote steht am Dokumentende, getrennt durch eine eigene `---`-Zelle:
 - [ ] In Lektion 00: Legende der Zellfarben in Abschnitt 2.
 - [ ] Trennlinie nach jedem Abschnitt; nach der Zusammenfassung weder Linie noch
       leere Zelle.
-- [ ] In Lektion 00: Autorenzeile `*Autor: Oliver Cordes*` mit Versionsangabe
+- [ ] In Lektion 00: Metadatenbox mit Autor, Version und Fußnotenverweis
       direkt unter dem Titel; `python3 tools/update_version.py --check` endet mit 0.
 - [ ] In Lektion 00: Fußnote zum Einsatz von KI-Werkzeugen als letzte Zelle.
 - [ ] Neue Prüfskripte liegen unter `tools/checks/check_*.py` und laufen über

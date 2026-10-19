@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prüft Versionszeile und Fußnote in Lektion 00.
+"""Prüft Metadatenbox und Fußnote in Lektion 00.
 
 Aufruf aus dem Wurzelverzeichnis:
     python3 tools/checks/check_version.py [--head]
@@ -20,7 +20,7 @@ from pathlib import Path
 import nbformat
 
 ROOT = Path(__file__).resolve().parents[2]
-HASH = re.compile(r'`([0-9a-f]{7,40})`')
+HASH = re.compile(r'`([0-9a-f]{7,40})`|<code>([0-9a-f]{7,40})</code>')
 DATE = re.compile(r'vom (\d{2})\.(\d{2})\.(\d{4})')
 
 
@@ -28,6 +28,14 @@ def git(*args: str) -> str:
     result = subprocess.run(['git', *args], cwd=ROOT,
                             capture_output=True, text=True, check=True)
     return result.stdout.strip()
+
+
+def version_hash(line: str) -> str | None:
+    """Liest die Kurz-ID aus ``code`` oder aus Backticks."""
+    match = HASH.search(line)
+    if not match:
+        return None
+    return match.group(1) or match.group(2)
 
 
 def main() -> int:
@@ -47,7 +55,8 @@ def main() -> int:
     checks = {
         'Zelle 1 enthaelt Marker': '<!-- version:start -->' in line
                                    and '<!-- version:end -->' in line,
-        'Autor vorhanden': '*Autor: Oliver Cordes*' in line,
+        'Autor vorhanden': '<strong>Autor:</strong> Oliver Cordes' in line,
+        'Versionslabel vorhanden': '<strong>Version:</strong>' in line,
         'Verweis auf Fussnote': '<sup><a href="#fussnote-ki">1</a></sup>' in line,
         'keine Code-Zelle im Dokument': all(c.cell_type != 'code' for c in cells),
         'Trenner vor der Fussnote': text[-2].strip() == '---',
@@ -59,7 +68,7 @@ def main() -> int:
         'genau eine Fussnote': sum('id="fussnote-ki"' in t for t in text) == 1,
     }
 
-    short = HASH.search(line)
+    short = version_hash(line)
     date = DATE.search(line)
     checks['Version mit Kurz-ID'] = short is not None
     checks['Version mit Commit-Datum'] = date is not None
@@ -67,7 +76,7 @@ def main() -> int:
     head = git('log', '-1', '--format=%h')
     if short:
         try:
-            commit_date = git('show', '-s', '--format=%cs', short.group(1))
+            commit_date = git('show', '-s', '--format=%cs', short)
         except subprocess.CalledProcessError:
             checks['Commit existiert'] = False
         else:
@@ -77,7 +86,7 @@ def main() -> int:
                 checks['Datum passt zum Commit'] = (
                     commit_date == f'{year}-{month}-{day}')
         if args.head:
-            checks['Version nennt HEAD'] = short.group(1) == head
+            checks['Version nennt HEAD'] = short == head
 
     fails = []
     footnote = re.sub(r'<[^>]+>', '', text[-1])
@@ -89,10 +98,10 @@ def main() -> int:
     bad = [k for k, v in checks.items() if not v]
     fails += [f'{Path(path).name}: {b}' for b in bad]
 
-    print(f'{Path(path).name}: Version `{short.group(1) if short else "?"}`'
+    print(f'{Path(path).name}: Version `{short or "?"}`'
           f' vom {date.group(0)[4:] if date else "?"}, {len(cells)} Zellen -> '
           + ('OK' if not bad else f'FEHLER {bad}'))
-    if short and short.group(1) != head:
+    if short and short != head:
         print(f'  info: HEAD ist `{head}`; die Zeile nennt den Commit, auf dem'
               ' der Stand beruht.')
     print('\nFEHLER:', fails or 'keine')

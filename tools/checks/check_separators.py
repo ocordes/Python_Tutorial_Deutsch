@@ -124,10 +124,13 @@ def main() -> int:
 
         # 6) Markdown-Inhalte unveraendert (Trennzeilen zaehlen nicht zum Inhalt)
         def content(cell):
-            lines = [l for l in src(cell).split('\n')
+            # Die Metadatenbox wird vom Versionsskript gepflegt und zaehlt nicht
+            # als redaktioneller Inhalt.
+            raw = re.sub(r'<!-- version:start -->.*?<!-- version:end -->', '',
+                         src(cell), flags=re.S)
+            lines = [l for l in raw.split('\n')
                      if l.strip() != '---' and not l.strip().startswith('<!--')]
             text = '\n'.join(lines).strip()
-            # Autorenzelle traegt zusaetzlich die Version: nur den Autor vergleichen
             if text.startswith('*Autor:'):
                 text = '*Autor:*'
             return text
