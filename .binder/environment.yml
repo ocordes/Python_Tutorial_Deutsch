@@ -6,6 +6,7 @@ channels:
 # Untergrenzen sind mit numpy 2 und Python 3.11 abgestimmt.
 dependencies:
   - python<3.15
+  - notebook<7
   - numpy
   - matplotlib
   - pandas
