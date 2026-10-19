@@ -5,7 +5,7 @@ channels:
 # gespeicherten Ausgaben) sind für Lektion 12 verbindlich. Die übrigen
 # Untergrenzen sind mit numpy 2 und Python 3.11 abgestimmt.
 dependencies:
-  - python
+  - python<3.15
   - numpy
   - matplotlib
   - pandas
