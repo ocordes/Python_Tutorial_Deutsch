@@ -5,13 +5,13 @@ channels:
 # gespeicherten Ausgaben) sind für Lektion 12 verbindlich. Die übrigen
 # Untergrenzen sind mit numpy 2 und Python 3.11 abgestimmt.
 dependencies:
-  - python>=3.11
-  - numpy>=2.0
-  - matplotlib>=3.9
-  - pandas>=3.0
-  - scipy>=1.13
-  - nbformat>=5.9
+  - python
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - nbformat
   - jupyterlab
   - pip:
-    - kafe2>=2.11
-    - iminuit>=2.30
+    - kafe2
+    - iminuit
